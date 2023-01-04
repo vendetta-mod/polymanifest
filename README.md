@@ -27,7 +27,20 @@ The file name for a polymanifest should always be `manifest.json`, as opposed to
 
 * `hash` - the SHA-256 hash of the plugin's bundle. Mods can use this for updating, and it is expected to be added at build time, rather than in the developer-accessible manifest.
 
+### Vendor-specific fields
+There are situations where a mod may wish to specify it's own data, for example a plugin icon.
+
+This is achieved via a vendor-specific field - an extension to the spec, preferably named after the mod in question. Here is an example:
+
+```json
+"vendetta": {
+    "icon": "ic_mail"
+}
+```
+
+Data inside the mod's field does not follow a set structure - it is up to the developer.
+
 ## Concerns
 
-### How can a mod determine that a plugin is intended to be used with it?
-A solution for this would be to extend the spec with a field for the mod, however I feel this defeats the point of a "unified manifest format".
+### The concept of a vendor-specific field breaks the idea of a "unified" format!
+This is true, but I could not come up with a better solution. The hope is that a mod can also use it's vendor-specific field to determine that a plugin is intended for it.
